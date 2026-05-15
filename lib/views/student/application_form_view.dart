@@ -28,7 +28,7 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
     'Third Year': [
       'Software Development III',
       'Technical Programming III',
-      'Communications Network III'
+      'Communications Network III',
     ],
   };
 
@@ -80,12 +80,18 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Application Form",
-                    style:
-                        TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                const Text(
+                  "Application Form",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+
                 const SizedBox(height: 25),
-                const Text("Year of Study",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+
+                // ==================== YEAR OF STUDY ====================
+                const Text(
+                  "Year of Study",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
                 DropdownButtonFormField<String>(
                   initialValue: selectedYear,
@@ -100,12 +106,20 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
                   validator: (value) =>
                       value == null ? "Year is required" : null,
                 ),
+
                 const SizedBox(height: 25),
-                const Text("Module 1",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+
+                // ==================== MODULE 1 ====================
+                const Text(
+                  "Module 1",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
-                const Text("Academic Level",
-                    style: TextStyle(fontSize: 13, color: Colors.grey)),
+
+                const Text(
+                  "Academic Level",
+                  style: TextStyle(fontSize: 13, color: Colors.grey),
+                ),
                 const SizedBox(height: 5),
                 DropdownButtonFormField<String>(
                   initialValue: selectedLevel1,
@@ -123,9 +137,13 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
                   validator: (value) =>
                       value == null ? "Academic level is required" : null,
                 ),
+
                 const SizedBox(height: 12),
-                const Text("Module Name",
-                    style: TextStyle(fontSize: 13, color: Colors.grey)),
+
+                const Text(
+                  "Module Name",
+                  style: TextStyle(fontSize: 13, color: Colors.grey),
+                ),
                 const SizedBox(height: 5),
                 DropdownButtonFormField<String>(
                   initialValue: selectedModule1,
@@ -137,7 +155,8 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
                       ? []
                       : modulesByLevel[selectedLevel1]!
                           .map(
-                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                            (e) => DropdownMenuItem(value: e, child: Text(e)),
+                          )
                           .toList(),
                   onChanged: selectedLevel1 == null
                       ? null
@@ -145,12 +164,19 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
                   validator: (value) =>
                       value == null ? "Module is required" : null,
                 ),
+
                 const SizedBox(height: 25),
-                const Text("Module 2 (Optional)",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+
+                const Text(
+                  "Module 2 (Optional)",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
-                const Text("Academic Level",
-                    style: TextStyle(fontSize: 13, color: Colors.grey)),
+
+                const Text(
+                  "Academic Level",
+                  style: TextStyle(fontSize: 13, color: Colors.grey),
+                ),
                 const SizedBox(height: 5),
                 DropdownButtonFormField<String>(
                   initialValue: selectedLevel2,
@@ -166,9 +192,13 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
                     selectedModule2 = null;
                   }),
                 ),
+
                 const SizedBox(height: 12),
-                const Text("Module Name",
-                    style: TextStyle(fontSize: 13, color: Colors.grey)),
+
+                const Text(
+                  "Module Name",
+                  style: TextStyle(fontSize: 13, color: Colors.grey),
+                ),
                 const SizedBox(height: 5),
                 DropdownButtonFormField<String>(
                   initialValue: selectedModule2,
@@ -180,15 +210,20 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
                       ? []
                       : modulesByLevel[selectedLevel2]!
                           .map(
-                              (e) => DropdownMenuItem(value: e, child: Text(e)))
+                            (e) => DropdownMenuItem(value: e, child: Text(e)),
+                          )
                           .toList(),
                   onChanged: selectedLevel2 == null
                       ? null
                       : (value) => setState(() => selectedModule2 = value),
                 ),
+
                 const SizedBox(height: 25),
-                const Text("Supporting Document",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+
+                const Text(
+                  "Supporting Document",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 8),
                 SizedBox(
                   width: double.infinity,
@@ -202,8 +237,11 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      const Icon(Icons.check_circle,
-                          color: Colors.green, size: 18),
+                      const Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                        size: 18,
+                      ),
                       const SizedBox(width: 6),
                       Expanded(
                         child: Text(
@@ -215,11 +253,17 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
                     ],
                   ),
                 ],
+
                 const SizedBox(height: 20),
+
                 if (appVM.errorMessage != null)
-                  Text(appVM.errorMessage!,
-                      style: const TextStyle(color: Colors.red)),
+                  Text(
+                    appVM.errorMessage!,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+
                 const SizedBox(height: 10),
+
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
@@ -247,12 +291,14 @@ class _ApplicationFormViewState extends State<ApplicationFormView> {
                                 navigator.pop();
                                 messenger.showSnackBar(
                                   const SnackBar(
-                                      content: Text("Application submitted")),
+                                    content: Text("Application submitted"),
+                                  ),
                                 );
                               } else {
                                 messenger.showSnackBar(
                                   const SnackBar(
-                                      content: Text("Submission failed")),
+                                    content: Text("Submission failed"),
+                                  ),
                                 );
                               }
                             }
